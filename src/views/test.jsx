@@ -19,7 +19,8 @@ class TestContainer extends Component {
 
 const Test = ({ questions }) => [
   <h1 key="title">Test Page</h1>,
-  questions && questions.map((q, i) => <div key={i}>{JSON.stringify(q)}</div>)
+  questions && questions.map((q, i) => <div key={i}>{JSON.stringify(q)}</div>),
+  <div key="footer">length: {questions.length}</div>
 ]
 
 export default connect(

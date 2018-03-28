@@ -16,10 +16,6 @@ const store = createStore(
   applyMiddleware(thunkMiddleware, createLogger())
 )
 
-console.log(store.getState(), 'clien')
-
-store.dispatch(fetchQuestions({params:{amount: 70}}))
-
 render(
   <Provider store={store}>
     <BrowserRouter>

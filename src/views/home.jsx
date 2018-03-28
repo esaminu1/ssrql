@@ -8,10 +8,6 @@ class HomeContainer extends Component {
     return store.dispatch(fetchGists(routeArgs))
   }
 
-  componentWillReceiveProps(props){
-    console.log(this.props, props, 'psps')
-  }
-
   componentDidMount() {
     if (!this.props.gists.length) this.props.fetchGists()
   }
@@ -30,7 +26,6 @@ const Home = ({ gists }) => {
 
 export default connect(
   state => {
-    console.log(state, state.gists, 'compsta')
     return { gists: state.gists }
   },
   dispatch => bindActionCreators({ fetchGists }, dispatch)
