@@ -1,6 +1,5 @@
 import webpack from 'webpack'
 import path from 'path'
-import isDev from 'isdev'
 
 const TARGET = process.env.npm_lifecycle_event
 

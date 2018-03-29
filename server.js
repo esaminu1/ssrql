@@ -1,4 +1,3 @@
-import isDev from 'isdev'
 import http from 'http'
 import express from 'express'
 import exphbs from 'express-handlebars'
@@ -33,7 +32,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 const server = http.createServer(app)
 
-if (isDev) app.use(hotMiddleware)
+if (process.env.NODE_ENV === 'development') app.use(hotMiddleware)
 
 const renderApp = (status, store, location, res) =>
   res.status(status).render('index', {
