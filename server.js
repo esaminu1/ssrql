@@ -1,6 +1,5 @@
 import http from 'http'
 import express from 'express'
-import exphbs from 'express-handlebars'
 import { StaticRouter, matchPath } from 'react-router'
 import { renderToString } from 'react-dom/server'
 import 'isomorphic-fetch'
@@ -15,20 +14,9 @@ import thunkMiddleware from 'redux-thunk'
 import isoRoutes from './src/isoRoutes'
 
 const app = express()
-const hbs = exphbs.create({
-  defaultLayout: 'index',
-  extname: '.handlebars',
-  layoutsDir: 'views',
-  partialsDir: 'views',
-  helpers: {
-    toJSON: function(object) {
-      return JSON.stringify(object)
-    }
-  }
-})
-app.engine('handlebars', hbs.engine)
-app.set('view engine', 'handlebars')
-app.set('views', path.join(__dirname, 'views'))
+
+ app.set('view engine', 'pug')
+app.set('views', path.join(__dirname, "templates"))
 
 const server = http.createServer(app)
 
@@ -43,7 +31,7 @@ const renderApp = (status, store, location, res) =>
         </StaticRouter>
       </Provider>
     ),
-    store: JSON.stringify(store.getState())
+    store: store.getState()
   })
 
 app.get('*', (req, res) => {
